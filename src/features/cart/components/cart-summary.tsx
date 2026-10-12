@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { formatFCFA } from "@/lib/format";
 import { DELIVERY_ZONE_LABELS, FREE_SHIPPING_THRESHOLD } from "@/features/cart/cart-calculations";
 import type { CartTotals, DeliveryZone } from "@/types";
@@ -28,12 +27,12 @@ export function CartSummary({ totals, zone }: CartSummaryProps) {
         </dd>
       </div>
       {missingForFreeShipping > 0 && (
-        <p className="text-xs text-muted-foreground">
-          Plus que {formatFCFA(missingForFreeShipping)} pour la livraison offerte.
-        </p>
+        <div className="text-xs text-muted-foreground">
+          <dt className="sr-only">Livraison offerte</dt>
+          <dd>Plus que {formatFCFA(missingForFreeShipping)} pour la livraison offerte.</dd>
+        </div>
       )}
-      <Separator className="my-1" />
-      <div className="flex justify-between text-base">
+      <div className="mt-1 flex justify-between border-t pt-3 text-base">
         <dt className="font-semibold">Total TTC</dt>
         <dd className="font-bold tabular-nums" data-testid="cart-total">
           {formatFCFA(totals.total)}

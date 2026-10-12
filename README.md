@@ -81,11 +81,11 @@ npm run lint         # ESLint
 npm run typecheck    # TypeScript strict
 npm run test         # 39 tests unitaires Vitest
 npx playwright install chromium   # une seule fois
-npm run test:e2e     # 8 tests Playwright (ordinateur + mobile) sur la version de production
+npm run test:e2e     # 18 tests Playwright (ordinateur + mobile) sur la version de production
 npm run build        # compilation de production
 ```
 
-Les tests Playwright couvrent le parcours complet : recherche, fiche produit, ajout au panier, modification des quantités, persistance après actualisation, erreurs de validation, choix de la zone de livraison, commande et confirmation. Pour les rejouer contre un conteneur ou le serveur EC2 :
+Les tests Playwright couvrent le parcours complet (recherche, fiche produit, ajout au panier, modification des quantités, persistance après actualisation, erreurs de validation, choix de la zone de livraison, commande et confirmation) et un audit d'accessibilité automatique WCAG 2.2 AA avec axe-core sur les pages principales. Pour les rejouer contre un conteneur ou le serveur EC2 :
 
 ```bash
 BASE_URL=http://<adresse> npx playwright test
