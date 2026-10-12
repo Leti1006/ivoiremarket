@@ -4,10 +4,10 @@
 # Il installe Docker, télécharge l'image publiée (docker pull, AUCUNE reconstruction)
 # et lance le site sur le port 80 de l'instance.
 #
-# Remplacez <username> par votre identifiant Docker Hub avant de coller.
+# Image publiée sur le compte Docker Hub leti1006.
 set -euo pipefail
 
-IMAGE="<username>/ivoiremarket:v1"
+IMAGE="leti1006/ivoiremarket:v1"
 
 dnf update -y
 dnf install -y docker

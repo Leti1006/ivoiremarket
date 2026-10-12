@@ -71,7 +71,7 @@ N'ouvrez **pas** le port 3000 : il reste interne, Docker relie le port 80 de l'h
 
 ### Raccourci : script de démarrage automatique
 
-Au lancement de l'instance, dans *Advanced details > User data*, collez le contenu de [`scripts/ec2-user-data.sh`](../scripts/ec2-user-data.sh) après avoir remplacé `<username>`. L'instance installera Docker, fera le `docker pull` et lancera le site toute seule. Patientez 2 à 3 minutes, puis passez directement à l'étape 6. Si le site ne répond pas, connectez-vous en SSH et lisez `sudo cat /var/log/cloud-init-output.log`.
+Au lancement de l'instance, dans *Advanced details > User data*, collez le contenu de [`scripts/ec2-user-data.sh`](../scripts/ec2-user-data.sh) (il utilise déjà `leti1006/ivoiremarket:v1`). L'instance installera Docker, fera le `docker pull` et lancera le site toute seule. Patientez 2 à 3 minutes, puis passez directement à l'étape 6. Si le site ne répond pas, connectez-vous en SSH et lisez `sudo cat /var/log/cloud-init-output.log`.
 
 ## 4. Installer Docker sur l'instance (méthode manuelle)
 
