@@ -38,6 +38,17 @@ docker push <username>/ivoiremarket:v1
 
 4. Vérifiez sur https://hub.docker.com/r/<username>/ivoiremarket que le tag `v1` apparaît (dépôt public, pour que EC2 puisse le télécharger sans identifiants).
 
+## 2 bis. Variante sans Docker sur votre ordinateur : publier depuis GitHub
+
+Le dépôt contient un workflow qui construit, teste puis publie l'image pour `linux/amd64`. Il ne se lance **que** si vous cliquez dessus.
+
+1. Docker Hub > *Account settings > Personal access tokens* : créez un jeton *Read & Write*.
+2. GitHub > dépôt `ivoiremarket` > *Settings > Secrets and variables > Actions > New repository secret* :
+   - `DOCKERHUB_USERNAME` : votre identifiant Docker Hub ;
+   - `DOCKERHUB_TOKEN` : le jeton (jamais votre mot de passe).
+3. Onglet *Actions* > *Publier sur Docker Hub* > *Run workflow* (tag `v1`).
+4. Quand la coche est verte, l'image `<username>/ivoiremarket:v1` est sur Docker Hub. Le résumé de l'exécution l'indique.
+
 ## 3. Créer l'instance EC2
 
 Console AWS > EC2 > *Lancer une instance* :
@@ -58,7 +69,11 @@ Console AWS > EC2 > *Lancer une instance* :
 
 N'ouvrez **pas** le port 3000 : il reste interne, Docker relie le port 80 de l'hôte au port 3000 du conteneur.
 
-## 4. Installer Docker sur l'instance
+### Raccourci : script de démarrage automatique
+
+Au lancement de l'instance, dans *Advanced details > User data*, collez le contenu de [`scripts/ec2-user-data.sh`](../scripts/ec2-user-data.sh) après avoir remplacé `<username>`. L'instance installera Docker, fera le `docker pull` et lancera le site toute seule. Patientez 2 à 3 minutes, puis passez directement à l'étape 6. Si le site ne répond pas, connectez-vous en SSH et lisez `sudo cat /var/log/cloud-init-output.log`.
+
+## 4. Installer Docker sur l'instance (méthode manuelle)
 
 ```bash
 chmod 400 ma-cle.pem
